@@ -24,3 +24,5 @@ jamielob:tab-history
 jamielob:scroll-history
 jamielob:drag-back
 jamielob:native-transition
+kadira:flow-router
+kadira:blaze-layout
