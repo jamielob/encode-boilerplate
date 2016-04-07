@@ -1,6 +1,6 @@
 /* Hide tabs by default */
 .tab-view-container {
-	display: none;
+	display: none; /* Initial state */
 }
 
 /* Show the current tab */
@@ -12,3 +12,13 @@
 	display: block;
 }
 
+
+/* Optional helper class, can be replaced for own content class */
+.tab-view-content {
+	background-color: #FFF;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
