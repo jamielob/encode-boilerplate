@@ -19,8 +19,13 @@ Package.onUse(function(api) {
   api.use('session', 'client');
   api.use('tracker', 'client');
 
-  //Other packages
+  //Other packages use
   api.use('kadira:flow-router', 'client');
+  api.use('kadira:blaze-layout', 'client');
+
+  //Other packages imply
+  api.imply('kadira:flow-router', 'client');
+  api.imply('kadira:blaze-layout', 'client');
 
   //Files
   api.mainModule('tab-view.js', 'client');
