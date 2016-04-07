@@ -36,7 +36,7 @@ FlowRouter.triggers.enter(function(context, redirect) {
 
 
 
-//Watch for route changes within each of the tabs
+//Watch for route changes within each of the tabs so we can save it to the history
 Tracker.autorun(function () {
 	
 	//Run every time we change routes
@@ -61,10 +61,23 @@ Tracker.autorun(function () {
 	//Make sure there's a current path
 	if (typeof currentPath === "undefined") return;
 
-	console.log(tabViewCurrent);
-	console.log(currentPath);
 	//Save it to the tabHistory
 	tabHistory[tabViewCurrent].push(currentPath);
 
+});
+
+
+//Watch for back clicks
+Template.body.events({
+	'click [tab-history-back]': function (event, template) {
+
+		//Get number of hops
+		let hops = $(event.currentTarget).attr('tab-history-back');
+
+		//If there are no hops, default to 1
+		if (!hops) hops = 1;
+
+		console.log(hops);
+	}
 });
 
