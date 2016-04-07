@@ -25,6 +25,7 @@ Package.onUse(function(api) {
   //Files
   api.mainModule('tab-view.js', 'client');
   api.addFiles('tab-view.html', 'client');
+  api.addFiles('tab-view.css', 'client');
 });
 
 
