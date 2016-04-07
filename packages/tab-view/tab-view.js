@@ -1,3 +1,6 @@
+//Set the default view
+Session.setDefault('tabViewCurrent', 1);
+
 //Create the tabsView Route
 FlowRouter.route('/tabView', {
     name: 'tabView',
