@@ -17,9 +17,12 @@ Package.onUse(function(api) {
   api.use('ecmascript');
   api.use('tracker', 'client');
   api.use('session', 'client');
+  api.use('templating', 'client');
+  api.use('jquery', 'client');
 
   //Other packages use
   api.use('kadira:flow-router', 'client');
+  api.use('gwendall:body-events@0.1.6', 'client');
 
   //Files
   api.mainModule('tab-history.js', 'client');
