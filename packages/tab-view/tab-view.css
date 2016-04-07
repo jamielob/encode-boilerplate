@@ -1,0 +1,14 @@
+/* Hide tabs by default */
+.tab-view-container {
+	display: none;
+}
+
+/* Show the current tab */
+.tab-view-1 .tab-view-container.tab-view-1,
+.tab-view-2 .tab-view-container.tab-view-2,
+.tab-view-3 .tab-view-container.tab-view-3,
+.tab-view-4 .tab-view-container.tab-view-4,
+.tab-view-5 .tab-view-container.tab-view-5 {
+	display: block;
+}
+

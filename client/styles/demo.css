@@ -14,3 +14,9 @@
 	text-align: center;
 	line-height: 50px;
 }
+
+/*NOTE: Need to add this for whatever scrolling container is used*/
+/* Fixes z-index problem with scrolling items underneath */
+.tab-view-hide .content {
+	overflow: hidden;
+}

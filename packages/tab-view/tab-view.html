@@ -1,4 +1,37 @@
-<template name="tabView">	
-	{{> Template.dynamic template=tabTemplate1}}
-</template>
+<template name="tabView">
 
+	<div class="{{tabViewCurrent}} {{tabViewVisible}}">
+		
+		{{#if template1}}
+			<div class="tab-view-container tab-view-1">
+				{{> Template.dynamic template=template1}}
+			</div>
+		{{/if}}
+
+		{{#if template2}}
+			<div class="tab-view-container tab-view-2">
+				{{> Template.dynamic template=template2}}
+			</div>
+		{{/if}}
+
+		{{#if template3}}
+			<div class="tab-view-container tab-view-3">
+				{{> Template.dynamic template=template3}}
+			</div>
+		{{/if}}
+
+		{{#if template4}}
+			<div class="tab-view-container tab-view-4">
+				{{> Template.dynamic template=template4}}
+			</div>
+		{{/if}}
+
+		{{#if template5}}
+			<div class="tab-view-container tab-view-5">
+				{{> Template.dynamic template=template5}}
+			</div>
+		{{/if}}
+
+	</div>
+
+</template>

@@ -15,12 +15,12 @@ Tracker.autorun(function () {
 	//If we've got the param
 	if (tab) {
 		//Save it
-		Session.set('tabViewCurrent', 'tabView-' + tab);
+		Session.set('tabViewCurrent', 'tab-view-' + tab);
 		//Unhide the tabs
-		Session.set('tabViewHide', 'tabView-show');		
+		Session.set('tabViewVisible', 'tab-view-show');		
 	} else {
 		//Hide the tabs
-		Session.set('tabViewHide', 'tabView-hide');		
+		Session.set('tabViewVisible', 'tab-view-hide');		
 	}
 });
 

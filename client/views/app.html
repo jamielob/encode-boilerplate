@@ -7,22 +7,16 @@
 	<h1>The app</h1>
 
 
-
-	{{tabViewCurrent}}
-	{{tabViewHide}}
-
-	<div class="tab-view">
-		<a href="/item">Item</a>
-	</div>
+	{{>tabView template1="tab1" template2="tab2" template3="matches" template4="me"}}
 
 
 
 	<div class="tabs {{tabViewCurrent}}">
 
-		<a href="/tabView?tab=1" class="tabView-1">Tab 1</a>
-		<a href="/tabView?tab=2" class="tabView-2">Tab 2</a>
-		<a href="/tabView?tab=3" class="tabView-3">Tab 3</a>
-		<a href="/tabView?tab=4" class="tabView-4">Tab 4</a>
+		<a href="/tabView?tab=1" class="tab-view-1">Tab 1</a>
+		<a href="/tabView?tab=2" class="tab-view-2">Tab 2</a>
+		<a href="/tabView?tab=3" class="tab-view-3">Tab 3</a>
+		<a href="/tabView?tab=4" class="tab-view-4">Tab 4</a>
 
 	</div>
 
