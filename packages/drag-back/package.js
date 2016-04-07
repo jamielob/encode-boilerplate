@@ -16,9 +16,9 @@ Package.onUse(function(api) {
   api.mainModule('drag-back.js');
 });
 
-Package.onTest(function(api) {
-  api.use('ecmascript');
-  api.use('tinytest');
-  api.use('jamielob:drag-back');
-  api.mainModule('drag-back-tests.js');
-});
+// Package.onTest(function(api) {
+//   api.use('ecmascript');
+//   api.use('tinytest');
+//   api.use('jamielob:drag-back');
+//   api.mainModule('drag-back-tests.js');
+// });

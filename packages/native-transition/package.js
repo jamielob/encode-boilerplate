@@ -16,9 +16,9 @@ Package.onUse(function(api) {
   api.mainModule('native-transition.js');
 });
 
-Package.onTest(function(api) {
-  api.use('ecmascript');
-  api.use('tinytest');
-  api.use('jamielob:native-transition');
-  api.mainModule('native-transition-tests.js');
-});
+// Package.onTest(function(api) {
+//   api.use('ecmascript');
+//   api.use('tinytest');
+//   api.use('jamielob:native-transition');
+//   api.mainModule('native-transition-tests.js');
+// });

@@ -16,9 +16,9 @@ Package.onUse(function(api) {
   api.mainModule('tab-history.js');
 });
 
-Package.onTest(function(api) {
-  api.use('ecmascript');
-  api.use('tinytest');
-  api.use('jamielob:tab-history');
-  api.mainModule('tab-history-tests.js');
-});
+// Package.onTest(function(api) {
+//   api.use('ecmascript');
+//   api.use('tinytest');
+//   api.use('jamielob:tab-history');
+//   api.mainModule('tab-history-tests.js');
+// });

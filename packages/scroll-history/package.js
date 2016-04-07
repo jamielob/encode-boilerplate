@@ -16,9 +16,9 @@ Package.onUse(function(api) {
   api.mainModule('scroll-history.js');
 });
 
-Package.onTest(function(api) {
-  api.use('ecmascript');
-  api.use('tinytest');
-  api.use('jamielob:scroll-history');
-  api.mainModule('scroll-history-tests.js');
-});
+// Package.onTest(function(api) {
+//   api.use('ecmascript');
+//   api.use('tinytest');
+//   api.use('jamielob:scroll-history');
+//   api.mainModule('scroll-history-tests.js');
+// });
