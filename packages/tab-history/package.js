@@ -12,8 +12,21 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.3.1');
+
+  //Meteor packages
   api.use('ecmascript');
-  api.mainModule('tab-history.js');
+  api.use('tracker', 'client');
+  api.use('session', 'client');
+
+  //Other packages use
+  api.use('kadira:flow-router', 'client');
+
+  //Files
+  api.mainModule('tab-history.js', 'client');
+
+  //Export
+  api.export('tabHistory');
+
 });
 
 // Package.onTest(function(api) {
