@@ -4,9 +4,27 @@
 
 <body>
 
-	
-	Hi!
+	<h1>The app</h1>
 
+
+
+	{{tabViewCurrent}}
+	{{tabViewHide}}
+
+	<div class="tab-view">
+		<a href="/item">Item</a>
+	</div>
+
+
+
+	<div class="tabs {{tabViewCurrent}}">
+
+		<a href="/tabView?tab=1" class="tabView-1">Tab 1</a>
+		<a href="/tabView?tab=2" class="tabView-2">Tab 2</a>
+		<a href="/tabView?tab=3" class="tabView-3">Tab 3</a>
+		<a href="/tabView?tab=4" class="tabView-4">Tab 4</a>
+
+	</div>
 
 </body>
 

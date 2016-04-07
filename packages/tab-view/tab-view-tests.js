@@ -1,11 +1,11 @@
-// Import Tinytest from the tinytest Meteor package.
-import { Tinytest } from "meteor/tinytest";
+// // Import Tinytest from the tinytest Meteor package.
+// import { Tinytest } from "meteor/tinytest";
 
-// Import and rename a variable exported by tab-view.js.
-import { name as packageName } from "meteor/tab-view";
+// // Import and rename a variable exported by tab-view.js.
+// import { name as packageName } from "meteor/tab-view";
 
-// Write your tests here!
-// Here is an example.
-Tinytest.add('tab-view - example', function (test) {
-  test.equal(packageName, "tab-view");
-});
+// // Write your tests here!
+// // Here is an example.
+// Tinytest.add('tab-view - example', function (test) {
+//   test.equal(packageName, "tab-view");
+// });
