@@ -36,6 +36,9 @@
 	left: 0;
 	right: 0;
 	padding: 10px;
+	overflow-x: hidden;
+	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 
 .tabs {
@@ -64,6 +67,12 @@
 	color: #FFF;
 	padding: 10px 20px;
 	cursor: pointer;
+}
+
+
+.list-item {
+	padding: 10px 0;
+	border-bottom: 1px solid #F1F1F1;
 }
 
 

@@ -9,7 +9,12 @@
 		<div class="content">
 			<p>Bacon ipsum dolor amet rump bresaola kielbasa, flank tail alcatra jerky meatloaf cow prosciutto shoulder. Hamburger bacon jerky, turducken picanha shank jowl salami rump pork loin ham hock ground round. Beef sausage tenderloin pig doner prosciutto short loin. Andouille pastrami bresaola biltong t-bone.</p>
 
-			<a href="/item" class="button">Item</a>
+			{{#each list}}
+				<div class="list-item">
+					Line {{this}}: <a href="/item" class="button">Item</a>
+				</div>
+			{{/each}}
+
 		</div>
 
 	</div>
