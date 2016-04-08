@@ -1,5 +1,7 @@
 #Tab History - Separate history states for each tab
 
+This package keeps track of a separate history for each tab view.  This means you can navigate to a different tab and return to the same page you left at.  A second tap of the tab button returns you back to the tab base page.  This UI pattern can be found in apps like Instagram and Twitter.
+
 ##Installation
 
 `meteor add jamielob:tab-history`
@@ -10,10 +12,12 @@ Tab history is designed for use with the `jamielob:tab-view` package.
 
 ##Setup
 
+No setup is required.  As soon as you add the package, the history state of each tab will be remembered.
+
 
 ##Back button
 
-To use a button as a back button simply add the `tab-history-back` attribute.
+To use a link as a back button simply add the `tab-history-back` attribute.
 
 For example:
 
@@ -29,3 +33,4 @@ If you want to step back in the history more than 1 hop, you can pass an optiona
 
 The above code will go back in the tab's history 3 items.
 
+> Created by Jamie Loberman in conjunction with Encode.fi
