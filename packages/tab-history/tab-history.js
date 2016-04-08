@@ -1,9 +1,6 @@
 //Set up tabHistory object
 tabHistory = {};
 
-//Set up the skipHistory flag - used when redirecting and we don't want to save to the history
-var skipHistory = false;
-
 //Set up the possible tabs
 tabHistory[1] = [];
 tabHistory[2] = [];
@@ -11,16 +8,24 @@ tabHistory[3] = [];
 tabHistory[4] = [];
 tabHistory[5] = [];
 
+//Set up the skipHistory flag - used when redirecting and we don't want to save to the history
+let skipHistory = false;
 
 //Check which page we should be showing on entry of a tabbed route
 FlowRouter.triggers.enter(function(context, redirect) {
 
-	const incomingTab = FlowRouter.current().queryParams.tab; //Need to get it this way because nothing else is set yet on enter
+	//Get the tab that was clicked on
+	const incomingTab = context.queryParams.tab; 
+
+	// //If the incoming tab is the same as the tab we're currently on (the second click on the tab button) - then we need to clear the history and not redirect
+	// if (incomingTab === Session.get('tabViewCurrent')) {
+	// 	return true;
+	// }
 
 	//Make sure we have a tab
 	if (!incomingTab) return;
 
-	//Check if there is any history
+	//Check if there is any history to wory about for this tab
 	if (!tabHistory[incomingTab].length) return;
 
 	//Get the last item in this tab's history
