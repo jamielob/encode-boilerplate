@@ -17,10 +17,11 @@ FlowRouter.triggers.enter(function(context, redirect) {
 	//Get the tab that was clicked on
 	const incomingTab = context.queryParams.tab; 
 
-	// //If the incoming tab is the same as the tab we're currently on (the second click on the tab button) - then we need to clear the history and not redirect
-	// if (incomingTab === Session.get('tabViewCurrent')) {
-	// 	return true;
-	// }
+	//If the incoming tab is the same as the tab we're currently on (the second click on the tab button) - then we need to clear the history and not redirect
+	if (incomingTab === Session.get('tabViewCurrent')) {
+		tabHistory[incomingTab] = [];
+		return true;
+	}
 
 	//Make sure we have a tab
 	if (!incomingTab) return;
