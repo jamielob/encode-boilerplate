@@ -13,4 +13,9 @@ FlowRouter.route('/item', {
     }
 });
 
-
+FlowRouter.route('/item2', {
+    name: 'item2',
+    action: function() {
+        BlazeLayout.render('item2');
+    }
+});

@@ -18,13 +18,13 @@ To use a button as a back button simply add the `tab-history-back` attribute.
 For example:
 
 ```
-<a class="button" tab-history-back>Back</a>
+<a tab-history-back>Back</a>
 ```
 
 If you want to step back in the history more than 1 hop, you can pass an optional value in:
 
 ```
-<a class="button" tab-history-back="3">Back</a>
+<a tab-history-back="3">Back</a>
 ```
 
 The above code will go back in the tab's history 3 items.

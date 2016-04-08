@@ -17,6 +17,9 @@ FlowRouter.triggers.enter(function(context, redirect) {
 
 	const incomingTab = FlowRouter.current().queryParams.tab; //Need to get it this way because nothing else is set yet on enter
 
+	//Make sure we have a tab
+	if (!incomingTab) return;
+
 	//Check if there is any history
 	if (!tabHistory[incomingTab].length) return;
 
@@ -26,6 +29,9 @@ FlowRouter.triggers.enter(function(context, redirect) {
 
 	//Skip saving the history until after we've redirected
 	skipHistory = true;
+
+	//Save the incoming tab as the current tab (tab-view won't do this because we redirect before it can trigger)
+	Session.set('tabViewCurrent', incomingTab);
 
 	//Redirect the the correct tab
 	redirect(lastItem);
@@ -71,13 +77,35 @@ Tracker.autorun(function () {
 Template.body.events({
 	'click [tab-history-back]': function (event, template) {
 
+		//Get the current tab view we're in
+		//const tabViewCurrent = FlowRouter.current().queryParams.tab; //Need to get it this way because nothing else is set yet on enter
+		const tabViewCurrent = Session.get('tabViewCurrent');
+
 		//Get number of hops
 		let hops = $(event.currentTarget).attr('tab-history-back');
 
 		//If there are no hops, default to 1
 		if (!hops) hops = 1;
 
-		console.log(hops);
+		//Skip saving the history until after we've reached our destination in history
+		skipHistory = true;
+
+		//Get the item in this tab's history
+		const itemPos = tabHistory[tabViewCurrent].length - 1 - hops;  //Last item (1) is the current page.  We keep this in history so we can go to when navigating to that tab
+		const item = tabHistory[tabViewCurrent][itemPos];
+
+		//Remove those items from the history
+		tabHistory[tabViewCurrent].splice(-hops, hops);
+
+		//If there's no item in the history, then just go back to the tab
+		if (typeof item === "undefined") {
+			FlowRouter.go('/tabView?tab=' + tabViewCurrent);
+		} else {
+			//Otherwise go back in history to the item
+			FlowRouter.go(item);
+		}
+
 	}
 });
+
 
