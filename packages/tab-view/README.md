@@ -53,6 +53,12 @@ For example, the `tab1` template might look like:
 
 If you're looking to also replicate the popular UI of keeping a separate "view" per tab, check out the `jamielob:tab-history` package.
 
+##Remembering scroll position
+
+Each of the tabs will automatically remember state and scroll position as they are not removed from memory, but simply hidden from view.  This is great because your "heaviest" content is usually contained at the base level of the tabs.  
+
+If you're looking to also remember scroll position on other pages, check out the `jamielob:scroll-history` package.
+
 
 > Created by Jamie Loberman in conjunction with Encode.fi
 
