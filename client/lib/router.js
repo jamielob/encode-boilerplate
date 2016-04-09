@@ -2,7 +2,7 @@
 FlowRouter.route('/', {
     name: 'default',
     action: function() {
-        FlowRouter.go('tabView');
+        BlazeLayout.render('welcome');
     }
 });
 
