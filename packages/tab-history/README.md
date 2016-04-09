@@ -33,4 +33,9 @@ If you want to step back in the history more than 1 hop, you can pass an optiona
 
 The above code will go back in the tab's history 3 items.
 
+
+##Known limitations
+
+If you navigate several layers deep inside a tab, navigate away and then use the hardware back button to go back. The next time that you go to that tab, you may end being returned to the last place in that tab's history before the hardware back button.  This doens't occur if at any point you reach the tab root using the hardware button.
+
 > Created by Jamie Loberman in conjunction with Encode.fi
