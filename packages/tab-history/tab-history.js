@@ -1,48 +1,99 @@
-//Set up tabHistory object
+//Set up tabHistory object	
 tabHistory = {};
 
 // //Set up the possible tabs
-// tabHistory[1] = [];
-// tabHistory[2] = [];
-// tabHistory[3] = [];
-// tabHistory[4] = [];
-// tabHistory[5] = [];
-
-// //Set up a place to save history of the tabs themselves (for hardware back button)
-// tabHistory['tabs'] = [];
+tabHistory[1] = new ReactiveArray;
+tabHistory[2] = new ReactiveArray;
+tabHistory[3] = new ReactiveArray;
+tabHistory[4] = new ReactiveArray;
+tabHistory[5] = new ReactiveArray;
 
 //Set up a global history (so we can track outside of the tabs, like onboarding, for the hardware button)
 tabHistory['global'] = [];
 
-//Set up the skipHistory flag - used when redirecting and we don't want to save to the history
-//let skipHistory = false;
-
 //Set up a flag for going back in history 
 let goingBack = false;
 
+//Current tab flag
+let currentTab;
 
 //Track global history so we can access it
 FlowRouter.triggers.exit(function(context, redirect) {
 
 	//Check direction
 	if (goingBack) {
-		//Remove the last item
+
+		//Remove the last item in the global history
 		tabHistory['global'].pop();
+
+
+		//If we have a current tab
+		if (currentTab) {
+
+			//Then pop from that tab's history
+			let thisTabHistory = tabHistory[currentTab].get();
+		 	thisTabHistory.pop();
+		 	tabHistory[currentTab].set(thisTabHistory);
+
+		}
+
+		//Reset going Back flag
+		goingBack = false;
+
 	} else {
-		//Add to history
+
+		//Add to global history
 		tabHistory['global'].push(context.path);
+
+		//Check if we are leaving a tab page
+		const outgoingTab = context.queryParams.tab;
+
+		//If we're leaving a page that isn't a tab base page AND we have a current tab
+		if (!outgoingTab && currentTab) {
+
+			//Then add it to that tab's history
+			tabHistory[currentTab].push(context.path);
+
+		}
+
 	}
-	console.log(tabHistory['global']);
 
 });
 
+//Set current tab on click on a tab button
+Template.body.events({
+	'click [tab-view]': function (event, template) {
+		//Defer so we wait for the dom
+		Meteor.defer(function() {
+			//Set the currentTab
+			currentTab = $(event.currentTarget).attr('tab-view');
 
+			//Pop one off the end of this tab's history.
+		 	let thisTabHistory = tabHistory[currentTab].get();
+		 	thisTabHistory.pop();
+		 	tabHistory[currentTab].set(thisTabHistory);
+
+		});
+		
+	}
+});
+
+//Set current tab on enter of a tab page - we do both this and the click to cover all situations - for example, this will cover when FlowRouter routes to a base tab without the user clicking a tab button
 FlowRouter.triggers.enter(function(context, redirect) {
 
-	//Last thing, reset the goingBack flag
-	goingBack = false;
+	//When we enter a tab, set the currentTab
+	const incomingTab = context.queryParams.tab;
+ 	if (incomingTab) currentTab = incomingTab;
 
-});
+ 	//Reset this tab's history since we're at the root again (helps with hardware back button)
+ 	tabHistory[currentTab].set([]);
+ 
+	//When we're going back within the tab history, and get to the the begininning (empty), remove the currentTab
+
+}, { only: ["tabView"] });
+
+
+
 
 
 //Watch for back clicks
@@ -52,9 +103,29 @@ Template.body.events({
 		//Set the goingBack flag
 		goingBack = true;
 
-		//Get the last path in the history
-		const lastPath = _.last(tabHistory['global']);
-		FlowRouter.go(lastPath);
+		//Check if we've got a currentTab
+		if (currentTab) {
+
+			//Get the tab's history
+			const thisTabHistory = tabHistory[currentTab].get();
+			
+			//If there are items in the tab history
+			if (thisTabHistory.length) {
+				//Get the last path in the global history
+				const lastTabPath = _.last(thisTabHistory);
+				FlowRouter.go(lastTabPath);
+			} else {
+				//Otherwise go back to the base
+				FlowRouter.go('/tabView?tab=' + currentTab);
+			}
+
+		} else {
+
+			//Get the last path in the global history
+			const lastPath = _.last(tabHistory['global']);
+			FlowRouter.go(lastPath);
+
+		}
 
 	}
 });
@@ -62,16 +133,97 @@ Template.body.events({
 //Listen for back buttons
 document.addEventListener("backbutton", function() {
 
-	//Set the goingBack flag
-	goingBack = true;
+	//Check for history
+	if (tabHistory['global'].length) {
 
-	//Get the last path in the history
-	const lastPath = _.last(tabHistory['global']);
-	FlowRouter.go(lastPath);
+		//Set the goingBack flag
+		goingBack = true;
 
+		//Get the last path in the history
+		const lastPath = _.last(tabHistory['global']);
+		FlowRouter.go(lastPath);
+
+	} else {
+
+		//If there's no history, then exit the app
+		navigator.app.exitApp();
+
+	}
 
 }, false);
 
+
+Template.registerHelper('tabPath', function(tabNumber) {
+
+	//Check for a history in this tab
+	if (tabHistory[tabNumber].getLength()) {
+		//Return the last path in this tab's history
+		return _.last(tabHistory[tabNumber].get());
+	} else {
+		//Otherwise just return the base tab
+		return '/tabView?tab=' + tabNumber;
+
+	}
+});
+
+
+// function addParameterToURL(url, param){
+//     url += (url.split('?')[1] ? '&':'?') + param;
+//     return url;
+// }
+
+
+
+// //Check if we're coming in to a tab so we can re-direct accordingly
+// FlowRouter.triggers.enter(function(context, redirect) {
+	
+// 	//Don't need to do this if we're going backwards
+// 	if (goingBack) return;
+
+// 	//Check if we've entered a tab
+// 	const incomingTab = context.queryParams.tab;
+// 	if (incomingTab) {
+
+// 		//console.log('tab reset!');
+// 		return;
+
+// 	}
+
+// 	//If we're at the beginning of the history, then don't need to do anything
+// 	if (!tabHistory['global'].length) return;
+
+// 	//Check where we came from
+// 	const lastPath = _.last(tabHistory['global']);
+
+// 	//Check if the last path had a tab query param
+// 	if (lastPath.includes('tab=')) {
+
+// 		//If it did, check which tab
+// 		const tabNumber = getTabFromUrl(lastPath);
+
+// 		//Generate the new path with the tab number
+// 		const newPath = addParameterToURL(context.path, 'tab='+tabNumber);
+
+// 		//Redirect
+// 		redirect(newPath);
+
+// 		// //Defer so it's after the inistial query params are set
+// 		// Meteor.defer(function() {
+// 		// 	//Skip adding to history when we redirect
+// 		// 	skipHistory = true;
+// 		// 	//Add the query param
+// 		// 	FlowRouter.setQueryParams({tab: tabNumber});
+// 		// });
+// 	}
+
+// });
+
+
+
+// function getTabFromUrl(url) {
+//     var match = RegExp('[?&]tab=([^&]*)').exec(url);
+//     return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+// }
 
 
 

@@ -19,10 +19,12 @@ Package.onUse(function(api) {
   api.use('session', 'client');
   api.use('templating', 'client');
   api.use('jquery', 'client');
+  api.use('reactive-var', 'client');
 
   //Other packages use
   api.use('kadira:flow-router', 'client');
   api.use('gwendall:body-events@0.1.6', 'client');
+  api.use('ciclopes:reactive-array@0.0.12', 'client');
 
   //Files
   api.mainModule('tab-history.js', 'client');
