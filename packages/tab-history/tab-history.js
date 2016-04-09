@@ -8,6 +8,9 @@ tabHistory[3] = [];
 tabHistory[4] = [];
 tabHistory[5] = [];
 
+//Creat a global history object
+tabHistory['global'] = [];
+
 //Set up the skipHistory flag - used when redirecting and we don't want to save to the history
 let skipHistory = false;
 
@@ -53,6 +56,17 @@ Tracker.autorun(function () {
 	
 	//Run every time we change routes
 	const watchThis = FlowRouter.watchPathChange();
+
+	//Get the current path we need to save
+	const currentPath = FlowRouter.current().path;
+
+	//Make sure there's a current path
+	if (typeof currentPath === "undefined") return;
+
+	//Save to the global history
+	tabHistory['global'].push(currentPath);
+	console.log(tabHistory['global']);
+
 	
 	//Check for the skip flag
 	if (skipHistory) {
@@ -61,20 +75,15 @@ Tracker.autorun(function () {
 		return;
 	}
 
-	//Make sure we're not on the tab itself (don't need to save that to history)
+	//Make sure we're not on the tab itself (don't need to save that to tab history)
 	if (FlowRouter.getRouteName() === 'tabView') return;
 
 	//Get the current tab view we're in
 	const tabViewCurrent = Session.get('tabViewCurrent');
 
-	//Get the current path we need to save
-	const currentPath = FlowRouter.current().path;
-
-	//Make sure there's a current path
-	if (typeof currentPath === "undefined") return;
-
 	//Save it to the tabHistory
 	tabHistory[tabViewCurrent].push(currentPath);
+
 
 });
 
@@ -82,13 +91,13 @@ Tracker.autorun(function () {
 //Watch for back clicks
 Template.body.events({
 	'click [tab-history-back]': function (event, template) {
+		
+		//Get number of hops
+		let hops = $(event.currentTarget).attr('tab-history-back');
 
 		//Get the current tab view we're in
 		//const tabViewCurrent = FlowRouter.current().queryParams.tab; //Need to get it this way because nothing else is set yet on enter
 		const tabViewCurrent = Session.get('tabViewCurrent');
-
-		//Get number of hops
-		let hops = $(event.currentTarget).attr('tab-history-back');
 
 		//If there are no hops, default to 1
 		if (!hops) hops = 1;
@@ -103,6 +112,10 @@ Template.body.events({
 		//Remove those items from the history
 		tabHistory[tabViewCurrent].splice(-hops, hops);
 
+		//Remove those items from the global history
+		tabHistory['global'].pop;
+		console.log(tabHistory['global']);
+
 		//If there's no item in the history, then just go back to the tab
 		if (typeof item === "undefined") {
 			FlowRouter.go('/tabView?tab=' + tabViewCurrent);
@@ -113,5 +126,30 @@ Template.body.events({
 
 	}
 });
+
+
+//Listen for back buttons (should't obey the stick to this tab rule)
+document.addEventListener("backbutton", function() {
+
+	//Skip saving the history until after we've reached our destination in history
+	skipHistory = true;
+	
+	//Pop one from the global history (current page)
+	tabHistory['global'].pop;
+
+	//Get the current tab view we're in
+	const tabViewCurrent = Session.get('tabViewCurrent');
+
+	//Pop one from the tab's history (current page)
+	tabHistory[tabViewCurrent].pop;
+
+	//Go back to the previus page
+	const lastItemPos = tabHistory['global'].length - 1;
+	const lastItem = tabHistory['global'][lastItemPos];
+	FlowRouter.go(lastItem);
+
+}, false);
+
+
 
 
