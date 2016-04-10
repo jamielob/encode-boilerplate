@@ -12,7 +12,15 @@ Tab history is designed for use with the `jamielob:tab-view` package.
 
 ##Setup
 
-No setup is required.  As soon as you add the package, the history state of each tab will be remembered.
+You'll need to use the `{{tabPath}}` helper as the URL for your tab buttons.  This will ensure the correct tab history page is shown.
+
+```
+<a href="{{tabPath '1'}}" tab-view="1">Tab 1</a>
+<a href="{{tabPath '2'}}" tab-view="2">Tab 2</a>
+<a href="{{tabPath '3'}}" tab-view="3">Tab 3</a>
+<a href="{{tabPath '4'}}" tab-view="4">Tab 4</a>
+```
+Be sure to include the `tab-view` attribute as usual.
 
 
 ##Back button
