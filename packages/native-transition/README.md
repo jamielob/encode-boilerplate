@@ -57,4 +57,8 @@ nativeTransition.defaults.fixedPixelsTop = 0;
 nativeTransition.defaults.fixedPixelsBottom = 0;
 ```
 
+##Flashes and stutters
+
+These can be caused by a couple of different things, but are usually to do with the content and scripts that are loading on the destiation page.  Either try defering anything heavy or try increding the delay values.
+
 > Created by Jamie Loberman in conjunction with Encode.fi
