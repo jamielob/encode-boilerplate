@@ -61,4 +61,19 @@ nativeTransition.defaults.fixedPixelsBottom = 0;
 
 These can be caused by a couple of different things, but are usually to do with the content and scripts that are loading on the destiation page.  Either try defering anything heavy or try increding the delay values.
 
+##Status Bar
+
+You'll need to style your status bar to make things look nice.  Meteor already includes the StatusBar plugin, so you can just add a file to your client lib directory and style it however you want to match your app.  For example:
+
+```
+Meteor.startup(function() {
+	if (Meteor.isCordova) {
+		//Format the status bar
+		StatusBar.overlaysWebView(false);
+		StatusBar.styleLightContent();
+		StatusBar.backgroundColorByHexString("#333");
+	}
+});
+```
+
 > Created by Jamie Loberman in conjunction with Encode.fi
