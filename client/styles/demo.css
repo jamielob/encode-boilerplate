@@ -1,3 +1,7 @@
+a {
+	text-decoration: none;
+}
+
 .header {
 	position: absolute;
 	top: 0;
@@ -61,6 +65,15 @@
 	width: 24%;
 	text-align: center;
 	line-height: 50px;
+}
+
+.active-tab-1 [tab-view="1"],
+.active-tab-2 [tab-view="2"],
+.active-tab-3 [tab-view="3"],
+.active-tab-4 [tab-view="4"],
+.active-tab-5 [tab-view="5"] {
+	font-weight: bold;
+	background-color: #000;
 }
 
 
