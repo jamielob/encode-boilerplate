@@ -175,14 +175,44 @@ Template.registerHelper('tabPath', function(tabNumber) {
 
 	//Check for a history in this tab
 	if (tabHistory[tabNumber].getLength()) {
-		//Return the last path in this tab's history
-		return _.last(tabHistory[tabNumber].get());
+		//Get the last path in this tab's history
+		let lastTabPath = _.last(tabHistory[tabNumber].get());
+		//Add the tab as a param - this is so when we transition between two tabs that have the same current page, they are still unique
+		lastTabPath = addQueryParam(lastTabPath, 'tab-id', tabNumber);
+		return lastTabPath;
 	} else {
 		//Otherwise just return the base tab
 		return '/tabView?tab=' + tabNumber;
 
 	}
 });
+
+//Add tab query param
+function addQueryParam(url, name, value) {
+
+	//Check if URL has any query params already
+	if (url.indexOf('?') > -1) {
+
+		//Make sure the param isn't already there
+		if (url.indexOf(name + '=') < 0) {
+
+			//Add it to the end
+			return url + '&' + name + '=' + value;
+
+		} else {
+
+			return url;
+
+		}
+
+	} else {
+
+		//Otherwise just add it
+		return url + '?' + name + '=' + value;
+
+	}
+
+}
 
 
 
