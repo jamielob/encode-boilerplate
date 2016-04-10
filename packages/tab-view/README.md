@@ -1,4 +1,6 @@
-#Tab View - Easy tabbed views for mobile
+#Tab View
+
+Easy tabbed views for mobile
 
 ##Installation
 
@@ -22,13 +24,15 @@ Tab View supports up to 5 tabs, but can function with as little as 2.
 
 ##Switching between tabs
 
-To switch between tabs you'll use the `/tabView` route and the `tab` parameter.
+To switch between tabs you'll use the `/tabView` route and the `tab` parameter.  Each of the tabs must have the `tab-view` attribute too.	
 
 For example:
 
 ```
-<a href="/tabView?tab=1">Tab 1</a>
-<a href="/tabView?tab=2">Tab 2</a>
+<a href="/tabView?tab=1" tab-view="1">Tab 1</a>
+<a href="/tabView?tab=2" tab-view="2">Tab 2</a>
+<a href="/tabView?tab=3" tab-view="3">Tab 3</a>
+<a href="/tabView?tab=4" tab-view="4">Tab 4</a>
 ```
 
 ##Styling
@@ -47,6 +51,32 @@ For example, the `tab1` template might look like:
 		<p>Tab 1 content</p>
 	</div>
 </template>
+```
+
+##Indicating the current tab
+
+A `{{tabViewCurrent}}` helper is made available for you for this purpose.  Using CSS you can highlight which of the tab buttons is active.  First, wrap your tab buttons in a div that contains the helper as a class.  Since it returns just a number, you'll have to prepend it:
+
+```
+<div class="active-tab-{{tabViewCurrent}}">
+	<a href="/tabView?tab=1" tab-view="1">Tab 1</a>
+	<a href="/tabView?tab=2" tab-view="2">Tab 2</a>
+	<a href="/tabView?tab=3" tab-view="3">Tab 3</a>
+	<a href="/tabView?tab=4" tab-view="4">Tab 4</a>
+</div>
+```
+
+And then in your CSS you can use something like this to highlight the current tab:
+
+```
+.active-tab-1 [tab-view="1"],
+.active-tab-2 [tab-view="2"],
+.active-tab-3 [tab-view="3"],
+.active-tab-4 [tab-view="4"],
+.active-tab-5 [tab-view="5"] {
+	font-weight: bold;
+	background-color: #000;
+}
 ```
 
 ##Keeping separate navigation per tab
