@@ -1,3 +1,3 @@
-Template.registerHelper("fixedHeaderFixedFooter", function(count) {
+Template.registerHelper("fixedHeaderFixedFooter", function() {
 	return '{ "fixedPixelsTop": 50, "fixedPixelsBottom": 50 }';
 });

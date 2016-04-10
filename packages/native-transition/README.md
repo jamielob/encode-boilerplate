@@ -28,6 +28,20 @@ If you want to set the options for a particular link, you can do that by passing
 
 For a full list of options and how to use them, check out the [cordova plugin readme](http://plugins.telerik.com/cordova/plugin/native-page-transitions).
 
+##Using Helpers
+
+If you find yourself using a particular set of transition options multiple times, like with a fixed header and footer/tabs, you can place them in a global helper:
+
+```
+Template.registerHelper("fixedHeaderFixedFooter", function() {
+	return '{ "fixedPixelsTop": 50, "fixedPixelsBottom": 50 }';
+});
+```
+
+```
+<a href="/item" class="button" native-transition={{fixedHeaderFixedFooter}}>Item</a>
+```
+
 ##Defaults
 
 In your client lib folder create a file to house the defaults you want to set.  You can then set any defaults you like, including:
