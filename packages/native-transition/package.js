@@ -27,6 +27,9 @@ Package.onUse(function(api) {
   api.use('gwendall:body-events@0.1.6', 'client');
 
   api.mainModule('native-transition.js', 'client');
+
+  api.export('nativeTransition');
+
 });
 
 // Package.onTest(function(api) {
