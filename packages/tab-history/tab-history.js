@@ -119,9 +119,20 @@ Template.body.events({
 
 		} else {
 
-			//Get the last path in the global history
-			const lastPath = _.last(tabHistory['global']);
-			FlowRouter.go(lastPath);
+			//Check if we have a global history 
+			if (tabHistory['global'].length) {
+
+				//Get the last path in the global history
+				const lastPath = _.last(tabHistory['global']);
+				FlowRouter.go(lastPath);
+
+			} else {
+
+				//Probably after a hot code push, just go back to the first tab
+				FlowRouter.go('/tabView?tab=1');
+
+			}
+			
 
 		}
 
