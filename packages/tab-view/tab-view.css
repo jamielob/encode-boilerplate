@@ -22,3 +22,6 @@
 	bottom: 0;
 	left: 0;
 }
+.tab-view-content.no-tabs {
+	z-index: 5;
+}
