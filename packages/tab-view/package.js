@@ -18,10 +18,12 @@ Package.onUse(function(api) {
   api.use('templating', 'client');
   api.use('session', 'client');
   api.use('tracker', 'client');
+  api.use('jquery', 'client');
 
   //Other packages use
   api.use('kadira:flow-router', 'client');
   api.use('kadira:blaze-layout', 'client');
+  api.use('gwendall:body-events@0.1.6', 'client');
 
   //Other packages imply
   api.imply('kadira:flow-router', 'client');

@@ -28,6 +28,18 @@ Tracker.autorun(function () {
 });
 
 
+//Set current tab on click on a tab button - this
+Template.body.events({
+	'click [tab-view]': function (event, template) {
+		//Defer so we wait for the dom
+		Meteor.defer(function() {
+			//Set the currentTab
+			const incomingTab = $(event.currentTarget).attr('tab-view');
+			Session.set('tabViewCurrent', incomingTab);
+		});
+	}
+});
+
 //Current tab template helper
 Template.registerHelper('tabViewCurrent', function() {
 	return Session.get('tabViewCurrent');
