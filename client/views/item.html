@@ -3,7 +3,7 @@
 	<div class="tab-view-content">
 
 		<div class="header">
-			<a class="button" tab-history-back>&lsaquo;</a>
+			{{>backButton}}
 			<h1>Item!</h1>
 		</div>
 		
@@ -12,7 +12,7 @@
 
 			{{#each list}}
 				<div class="list-item">
-					Line {{this}}: <a class="button" href="/item2">Item 2</a>
+					Line {{this}}: <a class="button" href="/item2" native-transition='{ "direction": "up" }'>Item 2</a>
 				</div>
 			{{/each}}
 			

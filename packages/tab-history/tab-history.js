@@ -12,7 +12,7 @@ tabHistory[5] = new ReactiveArray;
 tabHistory['global'] = [];
 
 //Set up a flag for going back in history 
-let goingBack = false;
+tabHistory.goingBack = false;
 
 //Current tab flag
 currentTab = new ReactiveVar; 
@@ -21,7 +21,7 @@ currentTab = new ReactiveVar;
 FlowRouter.triggers.exit(function(context, redirect) {
 
 	//Check direction
-	if (goingBack) {
+	if (tabHistory.goingBack) {
 
 		//Remove the last item in the global history
 		tabHistory['global'].pop();
@@ -37,8 +37,10 @@ FlowRouter.triggers.exit(function(context, redirect) {
 
 		}
 
-		//Reset going Back flag
-		goingBack = false;
+		//Reset going back flag
+		Meteor.defer(function() {
+			tabHistory.goingBack = false;
+		});
 
 	} else {
 
@@ -99,7 +101,7 @@ Template.body.events({
 	'click [tab-history-back]': function (event, template) {
 		
 		//Set the goingBack flag
-		goingBack = true;
+		tabHistory.goingBack = true;
 
 		//Check if we've got a currentTab
 		if (currentTab.get()) {
@@ -146,7 +148,7 @@ document.addEventListener("backbutton", function() {
 	if (tabHistory['global'].length) {
 
 		//Set the goingBack flag
-		goingBack = true;
+		tabHistory.goingBack = true;
 
 		//Get the last path in the history
 		const lastPath = _.last(tabHistory['global']);

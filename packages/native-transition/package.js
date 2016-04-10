@@ -10,10 +10,23 @@ Package.describe({
   documentation: 'README.md'
 });
 
+Cordova.depends({
+    //0.6.4
+    'com.telerik.plugins.nativepagetransitions': 'https://github.com/Telerik-Verified-Plugins/NativePageTransitions/tarball/02f169c45469f4850cf08ace3c895a0f8c12daa0'
+});
+
+
 Package.onUse(function(api) {
   api.versionsFrom('1.3.1');
   api.use('ecmascript');
-  api.mainModule('native-transition.js');
+  api.use('templating', 'client');
+  api.use('jquery', 'client');
+
+
+  //Other packages use
+  api.use('gwendall:body-events@0.1.6', 'client');
+
+  api.mainModule('native-transition.js', 'client');
 });
 
 // Package.onTest(function(api) {
