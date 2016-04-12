@@ -76,14 +76,16 @@ p {
 	height: 50px;
 	background-color: #2c3e50;
 	z-index: 1;
+	overflow: hidden;
 }
 
 .tabs a {
-	display: inline-block;
+	display: block;
 	color: #FFF;
-	width: 24%;
+	width: 25%;
 	text-align: center;
 	line-height: 50px;
+	float:left;
 }
 
 .active-tab-1 [tab-view="1"],
