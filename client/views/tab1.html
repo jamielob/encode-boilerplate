@@ -10,9 +10,7 @@
 			<p>Bacon ipsum dolor amet rump bresaola kielbasa, flank tail alcatra jerky meatloaf cow prosciutto shoulder. Hamburger bacon jerky, turducken picanha shank jowl salami rump pork loin ham hock ground round. Beef sausage tenderloin pig doner prosciutto short loin. Andouille pastrami bresaola biltong t-bone.</p>
 
 			{{#each list}}
-				<div class="list-item">
-					Line {{this}}: <a href="/item" class="button" native-transition={{fixedHeaderFixedFooter}}>Item</a>
-				</div>
+				<a href="/item?text=Item {{this}} from tab 1. " class="list-item" native-transition={{fixedHeaderFixedFooter}}>Item {{this}}</a>
 			{{/each}}
 
 		</div>

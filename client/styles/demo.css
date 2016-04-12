@@ -7,13 +7,23 @@ a {
 	text-decoration: none;
 }
 
+h2 {
+	margin:0;
+	padding: 10px 15px 0px 15px;
+}
+
+p {
+	margin: 0;
+	padding: 10px 15px 10px 15px;
+}
+
 .header {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 50px;
-	background-color: #333;
+	background-color: #2980b9;
 }
 
 .header .button {
@@ -22,9 +32,11 @@ a {
 	top: 0;
 	width: 50px;
 	height: 50px;
-	line-height: 50px;
+	line-height: 42px;
 	padding: 0;
 	text-align: center;
+	background-color: transparent;
+	font-size: 40px;
 }
 
 .header h1 {
@@ -36,6 +48,8 @@ a {
 	height: 50px;
 	line-height: 50px;
 	padding: 0;
+	font-weight: normal;
+	font-size: 24px;
 }
 
 .content {
@@ -44,7 +58,7 @@ a {
 	bottom: 50px;
 	left: 0;
 	right: 0;
-	padding: 10px;
+	padding: 0px;
 	overflow-x: hidden;
 	overflow-y: scroll;
 	-webkit-overflow-scrolling: touch;
@@ -60,7 +74,7 @@ a {
 	left: 0;
 	width: 100%;
 	height: 50px;
-	background-color: #333;
+	background-color: #2c3e50;
 	z-index: 1;
 }
 
@@ -93,8 +107,10 @@ a {
 
 
 .list-item {
-	padding: 10px 0;
-	border-bottom: 1px solid #F1F1F1;
+	display: block;
+	color: #000;
+	padding: 20px 15px;
+	border-top: 1px solid #F1F1F1;
 }
 
 

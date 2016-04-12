@@ -3,6 +3,6 @@ Meteor.startup(function() {
 		//Format the status bar
 		StatusBar.overlaysWebView(false);
 		StatusBar.styleLightContent();
-		StatusBar.backgroundColorByHexString("#333");
+		StatusBar.backgroundColorByHexString("#2980b9");
 	}
 });

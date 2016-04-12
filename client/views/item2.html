@@ -4,17 +4,19 @@
 
 		<div class="header">
 			<a class="button" tab-history-back native-transition='{ "direction": "right", "fixedPixelsTop": 50, "fixedPixelsBottom": 50 }'>&lsaquo;</a>
-			<h1>Item 2!</h1>
+			<h1>Different Item!</h1>
 		</div>
 		
 		<div class="content">
-			<h2>Current tab {{tabViewCurrent}}</h2>
-			<p>Prosciutto leberkas flank turducken andouille, bresaola strip steak tenderloin kielbasa tri-tip alcatra. Spare ribs andouille short ribs, kielbasa shoulder jowl strip steak meatball ribeye. Tongue bresaola rump shank meatloaf brisket. Pancetta venison kielbasa, meatball pastrami ham hock beef ribs jerky cow pork belly tail. Jowl ribeye fatback boudin bacon cow leberkas meatball cupim sirloin tenderloin doner ham. Kielbasa chicken kevin, meatloaf drumstick hamburger pork belly ground round sirloin filet mignon jerky flank beef ribs leberkas.</p>
+			<h2>{{queryParam 'text'}}</h2>
+			<p>
+				{{#each list '10'}}
+					{{queryParam 'text'}}
+				{{/each}}
+			</p>
 
 			{{#each list}}
-				<div class="list-item">
-					Line {{this}}: <a class="button" href="/item3" native-transition='{ "direction": "up" }'>Item 3</a>
-				</div>
+				<a class="list-item" href="/item3" native-transition='{ "direction": "up" }'>Slide Up {{this}}</a>
 			{{/each}}
 			
 		</div>

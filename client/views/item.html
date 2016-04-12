@@ -8,13 +8,15 @@
 		</div>
 		
 		<div class="content">
-			<h2>Current tab {{tabViewCurrent}}</h2>
-			<p>Prosciutto leberkas flank turducken andouille, bresaola strip steak tenderloin kielbasa tri-tip alcatra. Spare ribs andouille short ribs, kielbasa shoulder jowl strip steak meatball ribeye. Tongue bresaola rump shank meatloaf brisket. Pancetta venison kielbasa, meatball pastrami ham hock beef ribs jerky cow pork belly tail. Jowl ribeye fatback boudin bacon cow leberkas meatball cupim sirloin tenderloin doner ham. Kielbasa chicken kevin, meatloaf drumstick hamburger pork belly ground round sirloin filet mignon jerky flank beef ribs leberkas.</p>
-
+			<h2>{{queryParam 'text'}}</h2>
+			<p>
+				{{#each list '10'}}
+					{{queryParam 'text'}}
+				{{/each}}
+			</p>
+		
 			{{#each list}}
-				<div class="list-item">
-					Line {{this}}: <a class="button" href="/item2" native-transition>Item 2</a>
-				</div>
+				<a href="/item2?text=A different item, from tab {{tabViewCurrent}}. " class="list-item" native-transition={{fixedHeaderFixedFooter}}>Different Item {{this}}</a>
 			{{/each}}
 			
 		</div>
