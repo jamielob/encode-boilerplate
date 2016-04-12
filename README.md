@@ -4,9 +4,12 @@ Easy to use packages to create a tabbed app with a similar UI pattern to popular
 
 ##Packages
 
-The following packages are utilized:
+The following packages are utilized and each have their own readme files:
 
 - [jamielob:tab-view](packages/tab-view)
+- [jamielob:tab-history](packages/tab-history)
+- [jamielob:scroll-history](packages/scroll-history)
+- [jamielob:native-transition](packages/native-transition)
 
 
 > Created by Jamie Loberman in conjunction with Encode.fi
