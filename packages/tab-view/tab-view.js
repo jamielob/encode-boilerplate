@@ -33,7 +33,7 @@ Tracker.autorun(function () {
 });
 
 
-//Set current tab on click on a tab button - this
+//Set current tab on click on a tab button
 Template.body.events({
 	'click [tab-view]': function (event, template) {
 
@@ -47,10 +47,10 @@ Template.body.events({
 				//Scroll it to the top
 				$(tabView.scrollContent).animate({ scrollTop: "0px" }, tabView.scrollSpeed);
 			}		
-		} else {
-			//Set the currentTab
-			Session.set('tabViewCurrent', incomingTab);
 		}
+
+		//Set the currentTab
+		Session.set('tabViewCurrent', incomingTab);
 
 		//Set the fromTab flag
 		tabView.fromTab = true;
