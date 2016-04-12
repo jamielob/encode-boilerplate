@@ -33,13 +33,9 @@ Package.onUse(function(api) {
   api.mainModule('tab-view.js', 'client');
   api.addFiles('tab-view.html', 'client');
   api.addFiles('tab-view.css', 'client');
+
+  //Export
+  api.export('tabView');
+
 });
 
-
-
-// Package.onTest(function(api) {
-//   api.use('ecmascript');
-//   api.use('tinytest');
-//   api.use('jamielob:tab-view');
-//   api.mainModule('tab-view-tests.js');
-// });

@@ -31,10 +31,3 @@ Package.onUse(function(api) {
   api.export('nativeTransition');
 
 });
-
-// Package.onTest(function(api) {
-//   api.use('ecmascript');
-//   api.use('tinytest');
-//   api.use('jamielob:native-transition');
-//   api.mainModule('native-transition-tests.js');
-// });

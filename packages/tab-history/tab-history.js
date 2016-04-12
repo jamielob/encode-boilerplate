@@ -37,11 +37,6 @@ FlowRouter.triggers.exit(function(context, redirect) {
 
 		}
 
-		//Reset going back flag
-		Meteor.defer(function() {
-			tabHistory.goingBack = false;
-		});
-
 	} else {
 
 		//Add to global history
@@ -214,5 +209,15 @@ function addQueryParam(url, name, value) {
 
 }
 
+
+//Reset the going back flag after we enter the page
+FlowRouter.triggers.enter(function(context, redirect) {
+
+	//Reset going back flag after a short delay (alows other plugins to grab the state)
+	Meteor.setTimeout(function() {
+		tabHistory.goingBack = false;
+	}, 200);
+
+});
 
 

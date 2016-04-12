@@ -1,3 +1,5 @@
+tabView = {};
+
 //Set default tab
 Session.setDefault('tabViewCurrent', 1);
 
@@ -37,6 +39,14 @@ Template.body.events({
 			const incomingTab = $(event.currentTarget).attr('tab-view');
 			Session.set('tabViewCurrent', incomingTab);
 		});
+
+		//Set the fromTab flag
+		tabView.fromTab = true;
+		//Reset the fromTabClick
+		Meteor.setTimeout(function() {
+			tabView.fromTab = false;
+		}, 500);
+
 	}
 });
 
@@ -50,4 +60,4 @@ Template.registerHelper('tabViewHide', function() {
 	return Session.get('tabViewHide');
 });
 
-export const name = 'tab-view';
+
