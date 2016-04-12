@@ -60,6 +60,7 @@ FlowRouter.triggers.exit(function(context, redirect) {
 //Set current tab on click on a tab button
 Template.body.events({
 	'click [tab-view]': function (event, template) {
+		
 		//Defer so we wait for the dom
 		Meteor.defer(function() {
 			//Set the currentTab

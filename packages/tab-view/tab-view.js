@@ -1,5 +1,8 @@
 tabView = {};
 
+//Set default scroll speed
+tabView.scrollSpeed = 300;
+
 //Set default tab
 Session.setDefault('tabViewCurrent', 1);
 
@@ -33,12 +36,21 @@ Tracker.autorun(function () {
 //Set current tab on click on a tab button - this
 Template.body.events({
 	'click [tab-view]': function (event, template) {
-		//Defer so we wait for the dom
-		Meteor.defer(function() {
+
+		//Get the tab that was clicked
+		const incomingTab = $(event.currentTarget).attr('tab-view');
+
+		//Check if we have a scrollContent set by the user
+		if (tabView.scrollContent) {
+			//Check if the current tab view is already the tab we're on
+			if (Session.get('tabViewCurrent') === incomingTab) {
+				//Scroll it to the top
+				$(tabView.scrollContent).animate({ scrollTop: "0px" }, tabView.scrollSpeed);
+			}		
+		} else {
 			//Set the currentTab
-			const incomingTab = $(event.currentTarget).attr('tab-view');
 			Session.set('tabViewCurrent', incomingTab);
-		});
+		}
 
 		//Set the fromTab flag
 		tabView.fromTab = true;

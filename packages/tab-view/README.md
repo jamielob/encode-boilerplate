@@ -79,6 +79,19 @@ And then in your CSS you can use something like this to highlight the current ta
 }
 ```
 
+##Scrolling to top
+
+If you would like the tab button to scroll your content back to the top, if the user is already on that tab, then you'll just need to tell the package the element you'd like to scroll.
+
+Create a `tabView.js` or similar file in your client lib folder and include the following:
+
+```
+tabView.scrollContent = '.content';
+tabView.scrollSpeed = 1000;
+```
+
+`scrollContent` is the jQuery selector of your scrollable content.  `scrollSpeed` is optional, with the default at `300`.
+
 ##Keeping separate navigation per tab
 
 If you're looking to also replicate the popular UI of keeping a separate "view" per tab, check out the `jamielob:tab-history` package.
