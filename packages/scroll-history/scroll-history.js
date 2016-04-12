@@ -27,7 +27,7 @@ scrollHistory = function(jQueryObject, conditions) {
 	}
 
 	//Add a temp div so that the scrolling works even when all content isn't loaded
-	jQueryObject.append('<div id="scrollHistoryTempDiv" style="height:10000px;"></div>');
+	jQueryObject.append('<div id="scrollHistoryTempDiv" style="height:100000px;"></div>');
 
 	//Scroll to the last position
 	jQueryObject.scrollTop(scrollHistoryPositions[routeName]);

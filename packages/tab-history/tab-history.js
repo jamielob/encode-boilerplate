@@ -172,8 +172,6 @@ Template.registerHelper('tabPath', function(tabNumber) {
 	if (tabHistory[tabNumber].getLength()) {
 		//Get the last path in this tab's history
 		let lastTabPath = _.last(tabHistory[tabNumber].get());
-		//Add the tab as a param - this is so when we transition between two tabs that have the same current page, they are still unique
-		lastTabPath = addQueryParam(lastTabPath, 'tab-id', tabNumber);
 		return lastTabPath;
 	} else {
 		//Otherwise just return the base tab
