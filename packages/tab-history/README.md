@@ -1,4 +1,4 @@
-#Tab History - Separate history states for each tab
+#Tab History
 
 This package keeps track of a separate history for each tab view.  This means you can navigate to a different tab and return to the same page you left at.  A second tap of the tab button returns you back to the tab base page.  This UI pattern can be found in apps like Instagram and Twitter.
 
