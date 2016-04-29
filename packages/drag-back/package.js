@@ -2,7 +2,7 @@ Package.describe({
   name: 'jamielob:drag-back',
   version: '0.0.1',
   // Brief, one-line summary of the package.
-  summary: '',
+  summary: 'Simple drag to go back functionality for your mobile apps',
   // URL to the Git repository containing the source code for this package.
   git: '',
   // By default, Meteor will default to using README.md for documentation.
@@ -16,9 +16,3 @@ Package.onUse(function(api) {
   api.mainModule('drag-back.js');
 });
 
-// Package.onTest(function(api) {
-//   api.use('ecmascript');
-//   api.use('tinytest');
-//   api.use('jamielob:drag-back');
-//   api.mainModule('drag-back-tests.js');
-// });

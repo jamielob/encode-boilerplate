@@ -4,7 +4,7 @@ Easily remember the scroll state of a page and restore it.
 
 ##Installation
 
-`meteor add jamielob:scoll-history`
+`meteor add jamielob:scroll-history`
 
 ##Prerequisites
 
@@ -22,18 +22,18 @@ The jquery object is whatever you want to track the scroll position of.  For exa
 
 ```
 Template.templateName.onRendered(function() {
-	scrollHistory( this.$('.content') );
+  scrollHistory( this.$('.content') );
 });
 
 ```
 
-The second parameter is an optional array, specifying any boolean variables that should have at least one satisfied before restoring the scroll.  This is useful when you want to only restore the scroll position when heading back or arriving from a tab. 
+The second parameter is an optional array, specifying any boolean variables that should have at least one satisfied before restoring the scroll.  This is useful when you want to only restore the scroll position when heading back or arriving from a tab.
 
 When used with the tabHistory and tabView packages, this would like like this:
 
 ```
 Template.templateName.onRendered(function() {
-	scrollHistory( this.$('.content'), [tabHistory.goingBack, tabView.fromTab] );
+  scrollHistory( this.$('.content'), [tabHistory.goingBack, tabView.fromTab] );
 });
 
 ```
