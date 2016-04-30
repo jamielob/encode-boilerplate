@@ -5,6 +5,20 @@
     "start": "meteor run"
   },
   "dependencies": {
-    "meteor-node-stubs": "~0.2.0"
-  }
+    "meteor-node-stubs": "~0.2.0",
+    "drag-to-go-back": "0.0.1"
+  },
+  "description": "Easy to use packages to create a tabbed app with a similar UI pattern to popular apps such as Twitter and Instagram.  This includes indiviudal tab history, saving scroll position on long pages and smooth transitions across all devices.",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jamielob/encode-boilerplate.git"
+  },
+  "author": "Jamie Loberman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jamielob/encode-boilerplate/issues"
+  },
+  "homepage": "https://github.com/jamielob/encode-boilerplate#readme"
 }
