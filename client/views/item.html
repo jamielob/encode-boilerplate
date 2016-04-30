@@ -1,24 +1,25 @@
 <template name="item">
 
-	<div class="tab-view-content">
+	<div class="tab-view-content drag-to-go-back">
 
 		<div class="header">
 			<a class="button" tab-history-back native-transition='{ "direction": "right", "fixedPixelsTop": 50, "fixedPixelsBottom": 50 }'>&lsaquo;</a>
 			<h1>Item!</h1>
 		</div>
-		
+
 		<div class="content">
+
 			<h2>{{queryParam 'text'}}</h2>
 			<p>
 				{{#each list '10'}}
 					{{queryParam 'text'}}
 				{{/each}}
 			</p>
-		
+
 			{{#each list}}
 				<a href="/item2?text=A different item, from tab {{tabViewCurrent}}. " class="list-item" native-transition={{fixedHeaderFixedFooter}}>Different Item {{this}}</a>
 			{{/each}}
-			
+
 		</div>
 
 

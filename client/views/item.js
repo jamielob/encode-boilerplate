@@ -1,4 +1,4 @@
-import { dragToGoBack } from 'drag-to-go-back'
+import { dragToGoBack } from 'drag-to-go-back';
 
 Template.item.onRendered(function() {
 
