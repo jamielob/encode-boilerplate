@@ -8,7 +8,7 @@ nativeTransition.transition = (options) => {
 
 		//Merge together the defaults plus the options passed in
 		let mergedOptions = {};
-		mergedOptions = _.extend( mergedOptions, nativeTransition.defaults, theseOptions );
+		mergedOptions = _.extend( mergedOptions, nativeTransition.defaults, options );
 
 		//Check for a type
 		let type;
@@ -24,25 +24,26 @@ nativeTransition.transition = (options) => {
 
 }
 
-Template.body.events({
-	'click [native-transition]': function (event, template) {
 
-		//Check if we have the native transitions cordova package
-		if (!window || !window.plugins || !window.plugins.nativepagetransitions) return;
+$(function () {
 
-		//Grab options from the html element
-		let theseOptions = $(event.currentTarget).attr('native-transition');
-		if (theseOptions) {
-			//Parse it
-			theseOptions = JSON.parse(theseOptions);
-		} else {
-			//Empty
-			theseOptions = {};
-		}
+	$(document.body).on('click', '[native-transition]', function(event) {
 
-		nativeTransition.transtion(theseOptions);
+			//Check if we have the native transitions cordova package
+			if (!window || !window.plugins || !window.plugins.nativepagetransitions) return;
 
+			//Grab options from the html element
+			let options = $(event.currentTarget).attr('native-transition');
+			if (options) {
+				//Parse it
+				options = JSON.parse(options);
+			} else {
+				options = {};
+			}
 
-	}
+			nativeTransition.transition(options);
+
+	});
+
 });
 

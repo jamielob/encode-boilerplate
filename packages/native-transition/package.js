@@ -19,7 +19,6 @@ Cordova.depends({
 Package.onUse(function(api) {
   api.versionsFrom('1.3.1');
   api.use('ecmascript');
-  api.use('templating', 'client');
   api.use('jquery', 'client');
 
 
