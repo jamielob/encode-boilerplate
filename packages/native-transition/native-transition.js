@@ -25,7 +25,7 @@ nativeTransition.transition = (options) => {
 }
 
 
-$(function () {
+$(document).ready(function() {
 
 	$(document.body).on('click', '[native-transition]', function(event) {
 
