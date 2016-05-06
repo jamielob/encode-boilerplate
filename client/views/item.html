@@ -1,13 +1,13 @@
 <template name="item">
 
-	<div class="tab-view-content drag-to-go-back">
+	<div class="tab-view-content">
 
 		<div class="header">
 			<a class="button" tab-history-back native-transition='{ "direction": "right", "fixedPixelsTop": 50, "fixedPixelsBottom": 50 }'>&lsaquo;</a>
 			<h1>Item!</h1>
 		</div>
 
-		<div class="content">
+		<div class="content drag-to-go-back">
 
 			<h2>{{queryParam 'text'}}</h2>
 			<p>
