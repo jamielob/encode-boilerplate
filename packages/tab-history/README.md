@@ -33,7 +33,18 @@ For example:
 <a tab-history-back>Back</a>
 ```
 
+Include the code below to intercept the hardware back button.
 
+```
+//Listen for hardware back button
+document.addEventListener("backbutton", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+  //Go back
+  tabHistory.goBack();
+}, false);
+```
 
 
 
