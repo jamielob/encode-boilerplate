@@ -144,26 +144,26 @@ Template.body.events({
 });
 
 //Listen for back buttons
-document.addEventListener("backbutton", function() {
+//document.addEventListener("backbutton", function() {
 
-	//Check for history
-	if (tabHistory['global'].length) {
+	// //Check for history
+	// if (tabHistory['global'].length) {
 
-		//Set the goingBack flag
-		tabHistory.goingBack = true;
+	// 	//Set the goingBack flag
+	// 	tabHistory.goingBack = true;
 
-		//Get the last path in the history
-		const lastPath = _.last(tabHistory['global']);
-		FlowRouter.go(lastPath);
+	// 	//Get the last path in the history
+	// 	const lastPath = _.last(tabHistory['global']);
+	// 	FlowRouter.go(lastPath);
 
-	} else {
+	// } else {
 
-		//If there's no history, then exit the app
-		navigator.app.exitApp();
+	// 	//If there's no history, then exit the app
+	// 	navigator.app.exitApp();
 
-	}
+	// }
 
-}, false);
+// }, false);
 
 
 //Tab path helper, saves having to do any funky redirects which will interfere with transitions
