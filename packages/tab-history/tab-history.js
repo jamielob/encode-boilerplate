@@ -1,4 +1,4 @@
-//Set up tabHistory object	
+//Set up tabHistory object
 tabHistory = {};
 
 // //Set up the possible tabs
@@ -11,11 +11,53 @@ tabHistory[5] = new ReactiveArray;
 //Set up a global history (so we can track outside of the tabs, like onboarding, for the hardware button)
 tabHistory['global'] = [];
 
-//Set up a flag for going back in history 
+//Set up a flag for going back in history
 tabHistory.goingBack = false;
 
+//Set up goBack function
+tabHistory.goBack = function() {
+
+	//Set the goingBack flag
+	tabHistory.goingBack = true;
+
+	//Check if we've got a currentTab
+	if (currentTab.get()) {
+
+		//Get the tab's history
+		const thisTabHistory = tabHistory[currentTab.get()].get();
+
+		//If there are items in the tab history
+		if (thisTabHistory.length) {
+			//Get the last path in the global history
+			const lastTabPath = _.last(thisTabHistory);
+			FlowRouter.go(lastTabPath);
+		} else {
+			//Otherwise go back to the base
+			FlowRouter.go('/tabView?tab=' + currentTab.get());
+		}
+
+	} else {
+
+		//Check if we have a global history
+		if (tabHistory['global'].length) {
+
+			//Get the last path in the global history
+			const lastPath = _.last(tabHistory['global']);
+			FlowRouter.go(lastPath);
+
+		} else {
+
+			//Probably after a hot code push, just go back to the first tab
+			FlowRouter.go('/tabView?tab=1');
+
+		}
+
+	}
+
+}
+
 //Current tab flag
-currentTab = new ReactiveVar; 
+currentTab = new ReactiveVar;
 
 //Track global history so we can access it
 FlowRouter.triggers.exit(function(context, redirect) {
@@ -60,7 +102,7 @@ FlowRouter.triggers.exit(function(context, redirect) {
 //Set current tab on click on a tab button
 Template.body.events({
 	'click [tab-view]': function (event, template) {
-		
+
 		//Defer so we wait for the dom
 		Meteor.defer(function() {
 			//Set the currentTab
@@ -73,7 +115,7 @@ Template.body.events({
 		 	tabHistory[incomingTab].set(thisTabHistory);
 
 		});
-		
+
 	}
 });
 
@@ -86,7 +128,7 @@ FlowRouter.triggers.enter(function(context, redirect) {
 
  	//Reset this tab's history since we're at the root again (helps with hardware back button)
  	tabHistory[currentTab.get()].set([]);
- 
+
 	//When we're going back within the tab history, and get to the the begininning (empty), remove the currentTab
 
 }, { only: ["tabView"] });
@@ -95,44 +137,8 @@ FlowRouter.triggers.enter(function(context, redirect) {
 //Watch for back clicks
 Template.body.events({
 	'click [tab-history-back]': function (event, template) {
-		
-		//Set the goingBack flag
-		tabHistory.goingBack = true;
 
-		//Check if we've got a currentTab
-		if (currentTab.get()) {
-
-			//Get the tab's history
-			const thisTabHistory = tabHistory[currentTab.get()].get();
-			
-			//If there are items in the tab history
-			if (thisTabHistory.length) {
-				//Get the last path in the global history
-				const lastTabPath = _.last(thisTabHistory);
-				FlowRouter.go(lastTabPath);
-			} else {
-				//Otherwise go back to the base
-				FlowRouter.go('/tabView?tab=' + currentTab.get());
-			}
-
-		} else {
-
-			//Check if we have a global history 
-			if (tabHistory['global'].length) {
-
-				//Get the last path in the global history
-				const lastPath = _.last(tabHistory['global']);
-				FlowRouter.go(lastPath);
-
-			} else {
-
-				//Probably after a hot code push, just go back to the first tab
-				FlowRouter.go('/tabView?tab=1');
-
-			}
-			
-
-		}
+		tabHistory.goBack();
 
 	}
 });
