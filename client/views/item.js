@@ -4,7 +4,7 @@ Template.item.onRendered(function() {
 
   const self = this;
 
-  dragToGoBack();
+  dragToGoBack.init();
 
   //Remember scroll position
   scrollHistory(self.$('.content'), [tabHistory.goingBack, tabView.fromTab]);

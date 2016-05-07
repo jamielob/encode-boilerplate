@@ -1,8 +1,12 @@
+import { dragToGoBack } from 'drag-to-go-back';
+
 Template.item2.onRendered(function() {
 
-	const self = this;
+  const self = this;
 
-	//Remember scroll position
-	scrollHistory(self.$('.content'), [tabHistory.goingBack, tabView.fromTab]);
+  dragToGoBack.init();
+
+  //Remember scroll position
+  scrollHistory(self.$('.content'), [tabHistory.goingBack, tabView.fromTab]);
 
 });
